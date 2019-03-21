@@ -17,26 +17,21 @@ function guardar(){
 function mostrar(Publicacion,num){
 	var total = document.getElementById('publicaciones');
 	var nuevoDiv = document.createElement('div');
+	nuevoDiv.classList.add("public");
+	//AGREGAMOS LA IMAGEN CON EL URL
 	var nuevoImg = document.createElement('img');
 	nuevoImg.src=Publicacion.imagen;
 	nuevoImg.alt="error";
 	nuevoDiv.appendChild(nuevoImg);
-	var nuevoUsu = document.createElement('h3');
-	var nuevoTexto = document.createTextNode("Usuario: "+Publicacion.usuario);
-	nuevoUsu.appendChild(nuevoTexto);
-	var nuevoDes = document.createElement('h3');
-	nuevoTexto = document.createTextNode("Descripcion: "+Publicacion.descripcion);
-	nuevoDes.appendChild(nuevoTexto);
-	nuevoDiv.appendChild(nuevoUsu);
-	nuevoDiv.appendChild(nuevoDes);
-	
-	nuevoDes = document.createElement('h3');
-	var fecha = new Date();
-	nuevoTexto = document.createTextNode("Fecha: "+fecha.getDate()+"/"+fecha.getMonth()+"/"+
-						fecha.getFullYear()+" "+fecha.getHours()+":"+fecha.getMinutes());
-	nuevoDes.appendChild(nuevoTexto);
-	nuevoDiv.appendChild(nuevoDes);
 
+	//Agregamos USUARIO, DESCRIP Y FECHA
+	nuevoElement(nuevoDiv,'h3',"Usuario: "+Publicacion.usuario);
+	nuevoElement(nuevoDiv,'h3',"Descripcion: "+Publicacion.descripcion);
+	var fecha = new Date();
+	nuevoElement(nuevoDiv,'h3',"Fecha: "+fecha.getDate()+"/"+fecha.getMonth()+"/"+
+						fecha.getFullYear()+" "+fecha.getHours()+":"+fecha.getMinutes());
+
+	//BOTON PARA LOS COMENTARIOS
 	var nuevoBtn = document.createElement('button');
 	nuevoBtn.id = 'btn'+num;
 	nuevoBtn.innerHTML = 'Comentarios: '+Publicacion.comentarios.length;
@@ -44,10 +39,13 @@ function mostrar(Publicacion,num){
   		mostrarComentarios(num);
 	});
 	nuevoDiv.appendChild(nuevoBtn);
-
+	//SECTION DE COMENTARIOS
 	var nuevoComen = document.createElement('div');
 	nuevoComen.id = 'comPub'+num;
+	nuevoComen.classList.add("coment");
 	nuevoComen.style.display = 'none';
+
+
 	var input = document.createElement('input');
 	input.id = 'input'+num;
 	nuevoBtn = document.createElement('button');
@@ -59,8 +57,15 @@ function mostrar(Publicacion,num){
 	nuevoComen.appendChild(nuevoBtn);
 
 	nuevoDiv.appendChild(nuevoComen);
+	//nuevoDiv.appendChild(document.createElement('hr'));
+	total.appendChild(nuevoDiv);//agregamos todo al div principal
+}
 
-	total.appendChild(nuevoDiv);
+function nuevoElement(padre,etiqueta,texto){
+	var nuevoUsu = document.createElement(etiqueta);
+	var nuevoTexto = document.createTextNode(texto);
+	nuevoUsu.appendChild(nuevoTexto);
+	padre.appendChild(nuevoUsu);
 }
 
 function mostrarComentarios(num){

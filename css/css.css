@@ -1,0 +1,36 @@
+p{
+	margin: 5px;
+}
+p,h3{
+	text-align: center;
+}
+input, button{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+img{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width:300px;
+}
+button{
+	background-color: #ffffff;
+	border-style: solid;
+	border-color: #87D6FF;
+  	padding: 10px 20px;
+}
+button:hover{
+	background-color: #87D6FF;
+}
+.public{
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+	border-style: solid;
+	border-color: #0056C1;
+}
+.coment{
+	background-color: #87D6FF;
+}
